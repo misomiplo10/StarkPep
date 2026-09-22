@@ -287,15 +287,31 @@
       pointer-events: none;
     }
 
-    .hero-product-image {
+    .hero-product-stack {
       position: relative;
       z-index: 1;
-      width: auto;
-      max-width: 86%;
-      height: clamp(370px, 42vw, 490px);
+      width: 100%;
+      min-height: 420px;
+    }
+
+    .hero-product-image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 112%;
+      max-width: 590px;
+      height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 24px 30px rgba(25, 76, 142, .22));
-      transform: rotate(-1.5deg);
+      transform-origin: center;
+      filter: drop-shadow(0 22px 24px rgba(25, 76, 142, .2));
+    }
+
+    .hero-product-image--retatrutide {
+      transform: translate(-54%, -92%) rotate(-5deg);
+    }
+
+    .hero-product-image--nad {
+      transform: translate(-46%, -5%) rotate(4deg);
     }
 
     .product-visual::before {
@@ -309,6 +325,7 @@
 
     .stage-label {
       position: absolute;
+      z-index: 2;
       left: 28px;
       bottom: 25px;
       margin: 0;
@@ -368,11 +385,10 @@
 
     .product-visual {
       position: relative;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 16 / 9;
       display: grid;
       place-items: center;
       overflow: hidden;
-      padding: clamp(24px, 4vw, 42px);
       margin-bottom: 22px;
       color: var(--muted);
       background:
@@ -382,34 +398,18 @@
       text-align: center;
     }
 
-    .product-visual--nad {
-      background: #212121;
-    }
-
     .product-visual--retatrutide {
       background:
-        url("assets/retatrutide-30mg.png") center / 92% auto no-repeat,
+        url("assets/retatrutide-30mg-studio-v2.png") center / 92% auto no-repeat,
         linear-gradient(140deg, rgba(255,255,255,.75), rgba(218,235,255,.78)),
         var(--ice);
     }
 
-    .product-visual--nad::before {
-      border-color: rgba(255, 255, 255, .12);
-    }
-
-    .product-image {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-height: 100%;
-      display: block;
-      object-fit: contain;
-      filter: drop-shadow(0 16px 20px rgba(22, 57, 105, .2));
-    }
-
-    .product-image--nad {
-      border-radius: 9px;
-      filter: drop-shadow(0 16px 22px rgba(0, 0, 0, .35));
+    .product-visual--nad {
+      background:
+        url("assets/nad-plus-500mg-studio-v2.png") center / 92% auto no-repeat,
+        linear-gradient(140deg, rgba(255,255,255,.75), rgba(218,235,255,.78)),
+        var(--ice);
     }
 
     .product-copy { padding: 0 8px 12px; }
@@ -675,8 +675,10 @@
       .language-switch button { width: 34px; height: 32px; }
       .hero { gap: 48px; padding-top: 54px; }
       h1 { font-size: clamp(3.1rem, 16vw, 4.8rem); }
-      .hero-stage { min-height: 390px; border-radius: 28px; }
-      .hero-product-image { height: 350px; }
+      .hero-stage { min-height: 360px; padding: 24px; border-radius: 28px; }
+      .hero-product-stack { min-height: 305px; }
+      .hero-product-image { width: 116%; }
+      .stage-label { left: 22px; bottom: 20px; }
       .section { padding-block: 78px; }
       .section-head { display: block; }
       .section-head p { margin-top: 18px; }
@@ -738,8 +740,11 @@
       </div>
 
       <div class="hero-stage">
-        <img class="hero-product-image" src="assets/nad-plus-hero.png" width="1024" height="1536" alt="Stark Peptides NAD+ 500 mg" fetchpriority="high">
-        <p class="stage-label">NAD+ / 500 mg</p>
+        <div class="hero-product-stack">
+          <img class="hero-product-image hero-product-image--retatrutide" src="assets/retatrutide-30mg-studio-v2.png" width="2172" height="724" alt="Stark Peptides Retatrutide 30 mg" fetchpriority="high">
+          <img class="hero-product-image hero-product-image--nad" src="assets/nad-plus-500mg-studio-v2.png" width="2170" height="725" alt="Stark Peptides NAD+ 500 mg" fetchpriority="high">
+        </div>
+        <p class="stage-label">Retatrutide / NAD+</p>
       </div>
     </section>
 
@@ -764,9 +769,7 @@
           </article>
 
           <article class="product-card">
-            <div class="product-visual product-visual--nad">
-              <img class="product-image product-image--nad" src="assets/nad-plus-500mg.png" width="1519" height="231" alt="Stark Peptides NAD+ 500 mg" loading="lazy" decoding="async">
-            </div>
+            <div class="product-visual product-visual--nad" role="img" aria-label="Stark Peptides NAD+ 500 mg"></div>
             <div class="product-copy">
               <span class="product-index" data-i18n="productTwo">Produkt 02</span>
               <h3>NAD+</h3>
