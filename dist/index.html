@@ -252,6 +252,7 @@
       place-items: center;
       overflow: hidden;
       isolation: isolate;
+      padding: 34px;
       background:
         linear-gradient(145deg, rgba(255,255,255,.96), rgba(226,239,255,.85)),
         var(--ice);
@@ -283,54 +284,27 @@
       bottom: -150px;
       border: 58px solid rgba(112, 183, 255, .13);
       border-radius: 50%;
+      pointer-events: none;
     }
 
-    .image-slot {
+    .hero-product-image {
       position: relative;
-      width: min(68%, 300px);
-      aspect-ratio: 4 / 5;
-      display: grid;
-      place-items: center;
-      padding: 28px;
-      overflow: hidden;
-      color: var(--muted);
-      background: rgba(255, 255, 255, .55);
-      border: 1px dashed rgba(57, 127, 232, .38);
-      border-radius: 28px;
-      text-align: center;
+      z-index: 1;
+      width: auto;
+      max-width: 86%;
+      height: clamp(370px, 42vw, 490px);
+      object-fit: contain;
+      filter: drop-shadow(0 24px 30px rgba(25, 76, 142, .22));
+      transform: rotate(-1.5deg);
     }
 
-    .image-slot::before,
     .product-visual::before {
       content: "";
       position: absolute;
       inset: 14px;
       border: 1px solid rgba(57, 127, 232, .11);
       border-radius: inherit;
-    }
-
-    .slot-icon {
-      width: 54px;
-      height: 54px;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 16px;
-      color: var(--blue);
-      background: var(--white);
-      border-radius: 18px;
-      box-shadow: 0 10px 28px rgba(44, 92, 153, .12);
-      font-size: 1.65rem;
-    }
-
-    .slot-title {
-      margin-bottom: 4px;
-      color: var(--ink);
-      font-weight: 780;
-    }
-
-    .slot-note {
-      margin: 0;
-      font-size: .86rem;
+      pointer-events: none;
     }
 
     .stage-label {
@@ -371,8 +345,10 @@
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      max-width: 1040px;
+      margin-inline: auto;
     }
 
     .product-card {
@@ -392,10 +368,11 @@
 
     .product-visual {
       position: relative;
-      aspect-ratio: 1 / 1.05;
+      aspect-ratio: 16 / 10;
       display: grid;
       place-items: center;
       overflow: hidden;
+      padding: clamp(24px, 4vw, 42px);
       margin-bottom: 22px;
       color: var(--muted);
       background:
@@ -405,15 +382,28 @@
       text-align: center;
     }
 
-    .product-visual .slot-icon {
-      width: 46px;
-      height: 46px;
-      margin-bottom: 12px;
-      border-radius: 15px;
-      font-size: 1.3rem;
+    .product-visual--nad {
+      background: #212121;
     }
 
-    .product-visual p { margin: 0; font-size: .8rem; }
+    .product-visual--nad::before {
+      border-color: rgba(255, 255, 255, .12);
+    }
+
+    .product-image {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-height: 100%;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 20px rgba(22, 57, 105, .2));
+    }
+
+    .product-image--nad {
+      border-radius: 9px;
+      filter: drop-shadow(0 16px 22px rgba(0, 0, 0, .35));
+    }
 
     .product-copy { padding: 0 8px 12px; }
 
@@ -663,7 +653,6 @@
 
       .hero-stage { min-height: 450px; }
       .products-grid { grid-template-columns: repeat(2, 1fr); }
-      .product-card:last-child { grid-column: 1 / -1; width: calc(50% - 10px); }
       .document-panel { grid-template-columns: 1fr; }
       .contact-panel { grid-template-columns: 1fr; }
     }
@@ -680,11 +669,11 @@
       .hero { gap: 48px; padding-top: 54px; }
       h1 { font-size: clamp(3.1rem, 16vw, 4.8rem); }
       .hero-stage { min-height: 390px; border-radius: 28px; }
+      .hero-product-image { height: 350px; }
       .section { padding-block: 78px; }
       .section-head { display: block; }
       .section-head p { margin-top: 18px; }
       .products-grid { grid-template-columns: 1fr; }
-      .product-card:last-child { grid-column: auto; width: auto; }
       .document-wrap { padding-bottom: 80px; }
       .document-panel { padding: 34px 22px; border-radius: 25px; }
       .batch-row { display: grid; }
@@ -741,15 +730,9 @@
         </div>
       </div>
 
-      <div class="hero-stage" aria-label="Reserveret plads til et fremtidigt produktbillede" data-i18n-aria="heroImageAria">
-        <div class="image-slot">
-          <div>
-            <div class="slot-icon" aria-hidden="true">＋</div>
-            <p class="slot-title" data-i18n="productImage">Produktbillede</p>
-            <p class="slot-note" data-i18n="productImageNote">Indsættes, når det er klart</p>
-          </div>
-        </div>
-        <p class="stage-label" data-i18n="heroFormat">Heroformat / 4:5</p>
+      <div class="hero-stage">
+        <img class="hero-product-image" src="assets/nad-plus-hero.png" width="1024" height="1536" alt="Stark Peptides NAD+ 500 mg" fetchpriority="high">
+        <p class="stage-label">NAD+ / 500 mg</p>
       </div>
     </section>
 
@@ -760,49 +743,29 @@
             <p class="eyebrow" data-i18n="productsEyebrow">Udvalgte produkter</p>
             <h2 id="products-title" data-i18n="productsTitle">Enkelt overblik.</h2>
           </div>
-          <p data-i18n="productsIntro">Produktbilleder og detaljer tilføjes snart. De faste formater gør siden klar fra første dag.</p>
+          <p data-i18n="productsIntro">To udvalgte produkter med tydelig adgang til den tilhørende batchdokumentation.</p>
         </div>
 
         <div class="products-grid">
           <article class="product-card">
-            <div class="product-visual" aria-label="Reserveret plads til billede af Semaglutide" data-i18n-aria="semaglutideAria">
-              <div>
-                <div class="slot-icon" aria-hidden="true">＋</div>
-                <p data-i18n="imageComing">Billede kommer</p>
-              </div>
+            <div class="product-visual">
+              <img class="product-image" src="assets/retatrutide-30mg.png" width="2172" height="724" alt="Stark Peptides Retatrutide 30 mg" loading="lazy" decoding="async">
             </div>
             <div class="product-copy">
               <span class="product-index" data-i18n="productOne">Produkt 01</span>
-              <h3>Semaglutide</h3>
-              <p data-i18n="productInfo">Format og produktinformation tilføjes her.</p>
+              <h3>Retatrutide</h3>
+              <p data-i18n="retatrutideInfo">30 mg format. Find den tilhørende dokumentation via batchnummeret.</p>
             </div>
           </article>
 
           <article class="product-card">
-            <div class="product-visual" aria-label="Reserveret plads til billede af Tirzepatide" data-i18n-aria="tirzepatideAria">
-              <div>
-                <div class="slot-icon" aria-hidden="true">＋</div>
-                <p data-i18n="imageComing">Billede kommer</p>
-              </div>
+            <div class="product-visual product-visual--nad">
+              <img class="product-image product-image--nad" src="assets/nad-plus-500mg.png" width="1519" height="231" alt="Stark Peptides NAD+ 500 mg" loading="lazy" decoding="async">
             </div>
             <div class="product-copy">
               <span class="product-index" data-i18n="productTwo">Produkt 02</span>
-              <h3>Tirzepatide</h3>
-              <p data-i18n="productInfo">Format og produktinformation tilføjes her.</p>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-visual" aria-label="Reserveret plads til billede af Retatrutide" data-i18n-aria="retatrutideAria">
-              <div>
-                <div class="slot-icon" aria-hidden="true">＋</div>
-                <p data-i18n="imageComing">Billede kommer</p>
-              </div>
-            </div>
-            <div class="product-copy">
-              <span class="product-index" data-i18n="productThree">Produkt 03</span>
-              <h3>Retatrutide</h3>
-              <p data-i18n="productInfo">Format og produktinformation tilføjes her.</p>
+              <h3>NAD+</h3>
+              <p data-i18n="nadInfo">500 mg format. Find den tilhørende dokumentation via batchnummeret.</p>
             </div>
           </article>
         </div>
@@ -882,21 +845,13 @@
         heroCopy: 'Peptider, produktspecifikationer og batchdokumentation samlet ét sted — enkelt, præcist og overskueligt.',
         heroProducts: 'Se produkter',
         heroReports: 'Find Janoshik rapport',
-        heroImageAria: 'Reserveret plads til et fremtidigt produktbillede',
-        productImage: 'Produktbillede',
-        productImageNote: 'Tilføjes, når det er klart',
-        heroFormat: 'Hero-billede / 4:5',
         productsEyebrow: 'Udvalgte produkter',
         productsTitle: 'Enkelt overblik.',
-        productsIntro: 'Produktbilleder og detaljer tilføjes snart. De faste formater gør siden klar fra første dag.',
-        imageComing: 'Billede kommer',
+        productsIntro: 'To udvalgte produkter med tydelig adgang til den tilhørende batchdokumentation.',
         productOne: 'Produkt 01',
         productTwo: 'Produkt 02',
-        productThree: 'Produkt 03',
-        productInfo: 'Format og produktinformation tilføjes her.',
-        semaglutideAria: 'Reserveret plads til billede af Semaglutide',
-        tirzepatideAria: 'Reserveret plads til billede af Tirzepatide',
-        retatrutideAria: 'Reserveret plads til billede af Retatrutide',
+        retatrutideInfo: '30 mg format. Find den tilhørende dokumentation via batchnummeret.',
+        nadInfo: '500 mg format. Find den tilhørende dokumentation via batchnummeret.',
         reportsEyebrow: 'Janoshik-dokumentation',
         reportsTitle: 'Find din Janoshik rapport.',
         reportsCopy: 'Indtast batchnummeret fra produktets etiket for at finde den tilhørende Janoshik-rapport.',
@@ -938,21 +893,13 @@
         heroCopy: 'Peptides, product specifications and batch documentation in one place — clear, precise and easy to navigate.',
         heroProducts: 'View products',
         heroReports: 'Find Janoshik report',
-        heroImageAria: 'Reserved space for a future product image',
-        productImage: 'Product image',
-        productImageNote: 'Will be added when ready',
-        heroFormat: 'Hero image / 4:5',
         productsEyebrow: 'Selected products',
         productsTitle: 'A clear overview.',
-        productsIntro: 'Product images and details are coming soon. Fixed formats keep the site ready from day one.',
-        imageComing: 'Image coming soon',
+        productsIntro: 'Two selected products with clear access to the corresponding batch documentation.',
         productOne: 'Product 01',
         productTwo: 'Product 02',
-        productThree: 'Product 03',
-        productInfo: 'Format and product information will be added here.',
-        semaglutideAria: 'Reserved space for an image of Semaglutide',
-        tirzepatideAria: 'Reserved space for an image of Tirzepatide',
-        retatrutideAria: 'Reserved space for an image of Retatrutide',
+        retatrutideInfo: '30 mg format. Find the corresponding documentation using the batch number.',
+        nadInfo: '500 mg format. Find the corresponding documentation using the batch number.',
         reportsEyebrow: 'Janoshik documentation',
         reportsTitle: 'Find your Janoshik report.',
         reportsCopy: 'Enter the batch number shown on the product label to find the corresponding Janoshik report.',
