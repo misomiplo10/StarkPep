@@ -386,6 +386,13 @@
       background: #212121;
     }
 
+    .product-visual--retatrutide {
+      background:
+        url("assets/retatrutide-30mg.png") center / 92% auto no-repeat,
+        linear-gradient(140deg, rgba(255,255,255,.75), rgba(218,235,255,.78)),
+        var(--ice);
+    }
+
     .product-visual--nad::before {
       border-color: rgba(255, 255, 255, .12);
     }
@@ -748,9 +755,7 @@
 
         <div class="products-grid">
           <article class="product-card">
-            <div class="product-visual">
-              <img class="product-image" src="assets/retatrutide-30mg.png" width="2172" height="724" alt="Stark Peptides Retatrutide 30 mg" loading="lazy" decoding="async">
-            </div>
+            <div class="product-visual product-visual--retatrutide" role="img" aria-label="Stark Peptides Retatrutide 30 mg"></div>
             <div class="product-copy">
               <span class="product-index" data-i18n="productOne">Produkt 01</span>
               <h3>Retatrutide</h3>
