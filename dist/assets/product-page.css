@@ -82,7 +82,7 @@ h1, h2, h3, p { margin-top: 0; }
 }
 
 .footer-logo-image {
-  object-position: 50% 47%;
+  object-position: 50% 43%;
 }
 
 .header-actions,
@@ -438,8 +438,9 @@ footer {
 }
 
 .footer-logo-frame {
-  width: 184px;
-  height: 68px;
+  width: 196px;
+  height: 84px;
+  flex: 0 0 auto;
   overflow: hidden;
 }
 
