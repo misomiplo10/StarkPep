@@ -63,7 +63,7 @@
     }
 
     .nav {
-      min-height: 80px;
+      min-height: 100px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -72,8 +72,9 @@
 
     .brand {
       position: relative;
-      width: 184px;
-      height: 68px;
+      width: 224px;
+      height: 92px;
+      flex: 0 0 auto;
       display: block;
       overflow: hidden;
       text-decoration: none;
@@ -85,6 +86,13 @@
       height: 100%;
       display: block;
       object-fit: cover;
+    }
+
+    .brand-logo-image {
+      object-position: 50% 44%;
+    }
+
+    .footer-logo-image {
       object-position: 50% 47%;
     }
 
@@ -360,6 +368,62 @@
       color: var(--muted);
     }
 
+    .catalogue-group {
+      max-width: 1040px;
+      margin-inline: auto;
+    }
+
+    .catalogue-group + .catalogue-group {
+      margin-top: 64px;
+    }
+
+    .catalogue-group-head {
+      display: grid;
+      grid-template-columns: auto minmax(240px, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .catalogue-kicker {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--blue);
+      font-size: .68rem;
+      font-weight: 850;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .catalogue-group-head h3 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.65rem);
+      line-height: 1;
+      letter-spacing: -.045em;
+    }
+
+    .catalogue-group-head p {
+      max-width: 520px;
+      margin: 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .catalogue-count {
+      padding: 7px 11px;
+      color: var(--ink-soft);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
     .products-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -428,8 +492,8 @@
       text-transform: uppercase;
     }
 
-    .product-card h3 {
-      margin-bottom: 7px;
+    .product-card h4 {
+      margin: 0 0 7px;
       font-size: 1.28rem;
       letter-spacing: -.025em;
     }
@@ -472,12 +536,52 @@
 
     .product-card:hover .product-link-hint { color: var(--blue); }
 
+    .vials-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .vial-card {
+      min-width: 0;
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 16px;
+      background: rgba(255, 255, 255, .78);
+      border: 1px solid rgba(220, 228, 239, .9);
+      border-radius: 18px;
+      box-shadow: 0 8px 26px rgba(30, 62, 105, .035);
+    }
+
+    .vial-index {
+      flex: 0 0 auto;
+      color: var(--blue);
+      font-size: .66rem;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .vial-name {
+      overflow-wrap: anywhere;
+      font-size: .95rem;
+      font-weight: 780;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+    }
+
     .research-notice {
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 22px;
       align-items: start;
-      margin-top: 32px;
+      max-width: 1040px;
+      margin: 36px auto 0;
       padding: 26px 28px;
       color: var(--white);
       background: var(--ink);
@@ -733,17 +837,23 @@
 
       .hero-stage { min-height: 450px; }
       .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .catalogue-group-head { grid-template-columns: auto 1fr; }
+      .catalogue-group-head p { grid-column: 1 / -1; }
+      .vials-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .document-panel { grid-template-columns: 1fr; }
       .contact-panel { grid-template-columns: 1fr; }
     }
 
+    @media (max-width: 780px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+
     @media (max-width: 640px) {
       .shell { width: min(calc(100% - 28px), var(--max)); }
-      .nav { min-height: 70px; }
-      .brand { width: 150px; height: 60px; }
+      .nav { min-height: 82px; }
+      .brand { width: 184px; height: 76px; }
       .header-actions { gap: 8px; }
       .nav-links { gap: 0; }
-      .nav-links a:not(.nav-cta) { display: none; }
       .nav-cta { padding: 9px 14px; }
       .language-switch button { width: 34px; height: 32px; }
       .hero { gap: 48px; padding-top: 54px; }
@@ -755,7 +865,16 @@
       .section { padding-block: 78px; }
       .section-head { display: block; }
       .section-head p { margin-top: 18px; }
+      .catalogue-group + .catalogue-group { margin-top: 52px; }
+      .catalogue-group-head {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+      .catalogue-group-head p { grid-column: auto; }
+      .catalogue-count { justify-self: start; }
       .products-grid { grid-template-columns: 1fr; }
+      .vials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .research-notice { grid-template-columns: 1fr; padding: 24px 22px; }
       .research-notice-badge { justify-self: start; }
       .document-wrap { padding-bottom: 80px; }
@@ -772,8 +891,10 @@
     }
 
     @media (max-width: 430px) {
-      .brand { width: 140px; height: 56px; }
+      .brand { width: 168px; height: 72px; }
       .nav-cta { display: none; }
+      .vials-grid { grid-template-columns: 1fr; }
+      .vial-card { min-height: 68px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -827,41 +948,80 @@
       <div class="shell">
         <div class="section-head">
           <div>
-            <p class="eyebrow" data-i18n="productsEyebrow">Udvalgte produkter</p>
-            <h2 id="products-title" data-i18n="productsTitle">Enkelt overblik.</h2>
+            <p class="eyebrow" data-i18n="productsEyebrow">Produkter</p>
+            <h2 id="products-title" data-i18n="productsTitle">Pens og vials.</h2>
           </div>
-          <p data-i18n="productsIntro">To udvalgte produkter med tydelig adgang til den tilhørende batchdokumentation.</p>
+          <p data-i18n="productsIntro">Udforsk udvalget efter format. Alle produkter er udelukkende til laboratorieforskning.</p>
         </div>
 
-        <div class="products-grid">
-          <a class="product-card" href="/products/retatrutide-30mg/">
-            <div class="product-visual product-visual--retatrutide" role="img" aria-label="Stark Peptides Retatrutide 30 mg"></div>
-            <div class="product-copy">
-              <span class="product-index" data-i18n="productOne">Produkt 01</span>
-              <h3>Retatrutide</h3>
-              <span class="product-use-label" data-i18n="researchUseShort">Kun til forskning</span>
-              <p data-i18n="retatrutideInfo">30 mg format. Find den tilhørende dokumentation via batchnummeret.</p>
-              <span class="product-link-hint"><span data-i18n="readMore">Se produkt</span> <span aria-hidden="true">↗</span></span>
+        <section class="catalogue-group" aria-labelledby="pens-title" aria-describedby="research-notice-body">
+          <div class="catalogue-group-head">
+            <div>
+              <span class="catalogue-kicker" data-i18n="formatLabel">Format</span>
+              <h3 id="pens-title">PENS</h3>
             </div>
-          </a>
+            <p data-i18n="pensIntro">Pen-formater med egne produktsider og adgang til batchdokumentation.</p>
+            <span class="catalogue-count" data-i18n="pensCount">2 produkter</span>
+          </div>
 
-          <a class="product-card" href="/products/nad-plus-500mg/">
-            <div class="product-visual product-visual--nad" role="img" aria-label="Stark Peptides NAD+ 500 mg"></div>
-            <div class="product-copy">
-              <span class="product-index" data-i18n="productTwo">Produkt 02</span>
-              <h3>NAD+</h3>
-              <span class="product-use-label" data-i18n="researchUseShort">Kun til forskning</span>
-              <p data-i18n="nadInfo">500 mg format. Find den tilhørende dokumentation via batchnummeret.</p>
-              <span class="product-link-hint"><span data-i18n="readMore">Se produkt</span> <span aria-hidden="true">↗</span></span>
+          <div class="products-grid">
+            <a class="product-card" href="/products/retatrutide-30mg/">
+              <div class="product-visual product-visual--retatrutide" role="img" aria-label="Stark Peptides Retatrutide 30 mg"></div>
+              <div class="product-copy">
+                <span class="product-index" data-i18n="productOne">Produkt 01</span>
+                <h4>Retatrutide</h4>
+                <span class="product-use-label" data-i18n="researchUseShort">Kun til forskning</span>
+                <p data-i18n="retatrutideInfo">30 mg format. Find den tilhørende dokumentation via batchnummeret.</p>
+                <span class="product-link-hint"><span data-i18n="readMore">Se produkt</span> <span aria-hidden="true">↗</span></span>
+              </div>
+            </a>
+
+            <a class="product-card" href="/products/nad-plus-500mg/">
+              <div class="product-visual product-visual--nad" role="img" aria-label="Stark Peptides NAD+ 500 mg"></div>
+              <div class="product-copy">
+                <span class="product-index" data-i18n="productTwo">Produkt 02</span>
+                <h4>NAD+</h4>
+                <span class="product-use-label" data-i18n="researchUseShort">Kun til forskning</span>
+                <p data-i18n="nadInfo">500 mg format. Find den tilhørende dokumentation via batchnummeret.</p>
+                <span class="product-link-hint"><span data-i18n="readMore">Se produkt</span> <span aria-hidden="true">↗</span></span>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <section class="catalogue-group" aria-labelledby="vials-title" aria-describedby="research-notice-body">
+          <div class="catalogue-group-head">
+            <div>
+              <span class="catalogue-kicker" data-i18n="formatLabel">Format</span>
+              <h3 id="vials-title">VIALS</h3>
             </div>
-          </a>
-        </div>
+            <p data-i18n="vialsIntro">Vial-formater. Individuelle produktsider og billeder tilføjes løbende.</p>
+            <span class="catalogue-count" data-i18n="vialsCount">14 produkter · Kun til forskning</span>
+          </div>
+
+          <ul class="vials-grid" role="list">
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">01</span><span class="vial-name">GHK-Cu</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">02</span><span class="vial-name">Tesamorelin</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">03</span><span class="vial-name">Tirzepatide</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">04</span><span class="vial-name">MOTS-C</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">05</span><span class="vial-name">TB-500</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">06</span><span class="vial-name">BPC-157</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">07</span><span class="vial-name">KLOW</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">08</span><span class="vial-name">Retatrutide</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">09</span><span class="vial-name">Melatonan 1</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">10</span><span class="vial-name">Melatonan 2</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">11</span><span class="vial-name">AHK-Cu</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">12</span><span class="vial-name">Wolverine Stack</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">13</span><span class="vial-name">CJC-1295</span></li>
+            <li class="vial-card"><span class="vial-index" aria-hidden="true">14</span><span class="vial-name">Ipamorelin</span></li>
+          </ul>
+        </section>
 
         <aside class="research-notice" aria-labelledby="research-notice-title">
           <span class="research-notice-badge" data-i18n="researchNoticeBadge">Research only</span>
           <div>
             <h3 id="research-notice-title" data-i18n="researchNoticeTitle">Kun til laboratorieforskning.</h3>
-            <p data-i18n="researchNoticeBody">Produkterne er ikke beregnet til brug på mennesker eller dyr og må ikke indtages, injiceres, inhaleres eller påføres kroppen. Produktinformation er ikke medicinsk rådgivning.</p>
+            <p id="research-notice-body" data-i18n="researchNoticeBody">Produkterne er ikke beregnet til brug på mennesker eller dyr og må ikke indtages, injiceres, inhaleres eller påføres kroppen. Produktinformation er ikke medicinsk rådgivning.</p>
           </div>
         </aside>
       </div>
@@ -940,9 +1100,14 @@
         heroCopy: 'Peptider, produktspecifikationer og batchdokumentation samlet ét sted — enkelt, præcist og overskueligt.',
         heroProducts: 'Se produkter',
         heroReports: 'Find Janoshik rapport',
-        productsEyebrow: 'Udvalgte produkter',
-        productsTitle: 'Enkelt overblik.',
-        productsIntro: 'Klik på et produkt for at se beskrivelse, specifikationer og forskningsdisclaimer.',
+        productsEyebrow: 'Produkter',
+        productsTitle: 'Pens og vials.',
+        productsIntro: 'Udforsk udvalget efter format. Alle produkter er udelukkende til laboratorieforskning.',
+        formatLabel: 'Format',
+        pensIntro: 'Pen-formater med egne produktsider og adgang til batchdokumentation.',
+        pensCount: '2 produkter',
+        vialsIntro: 'Vial-formater. Individuelle produktsider og billeder tilføjes løbende.',
+        vialsCount: '14 produkter · Kun til forskning',
         productOne: 'Produkt 01',
         productTwo: 'Produkt 02',
         researchUseShort: 'Kun til forskning',
@@ -993,9 +1158,14 @@
         heroCopy: 'Peptides, product specifications and batch documentation in one place — clear, precise and easy to navigate.',
         heroProducts: 'View products',
         heroReports: 'Find Janoshik report',
-        productsEyebrow: 'Selected products',
-        productsTitle: 'A clear overview.',
-        productsIntro: 'Select a product to view its description, specifications and research disclaimer.',
+        productsEyebrow: 'Products',
+        productsTitle: 'Pens and vials.',
+        productsIntro: 'Explore the selection by format. All products are exclusively for laboratory research.',
+        formatLabel: 'Format',
+        pensIntro: 'Pen formats with individual product pages and access to batch documentation.',
+        pensCount: '2 products',
+        vialsIntro: 'Vial formats. Individual product pages and images will be added over time.',
+        vialsCount: '14 products · Research use only',
         productOne: 'Product 01',
         productTwo: 'Product 02',
         researchUseShort: 'Research use only',
