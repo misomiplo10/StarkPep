@@ -48,6 +48,18 @@
 
     button, input { font: inherit; }
 
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
     .shell {
       width: min(calc(100% - 40px), var(--max));
       margin-inline: auto;
@@ -723,6 +735,126 @@
 
     .form-note[data-state="visible"] { color: var(--blue-bright); }
 
+    .newsletter-wrap { padding-bottom: 110px; }
+
+    .newsletter-panel {
+      position: relative;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: clamp(38px, 7vw, 90px);
+      align-items: center;
+      overflow: hidden;
+      padding: clamp(36px, 6vw, 72px);
+      color: var(--white);
+      background:
+        radial-gradient(circle at 92% 4%, rgba(255, 255, 255, .2), transparent 18rem),
+        linear-gradient(135deg, #397fe8 0%, #2c6dd2 52%, #173a75 100%);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 25px 70px rgba(35, 91, 176, .2);
+    }
+
+    .newsletter-copy,
+    .newsletter-form { position: relative; z-index: 1; }
+
+    .newsletter-copy .eyebrow {
+      margin-bottom: 19px;
+      color: #dcecff;
+    }
+
+    .newsletter-copy h2 {
+      max-width: 540px;
+      margin-bottom: 20px;
+      font-size: clamp(2.35rem, 4.7vw, 4.7rem);
+      line-height: .96;
+      letter-spacing: -.06em;
+      text-wrap: balance;
+    }
+
+    .newsletter-copy > p:not(.eyebrow) {
+      max-width: 500px;
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, .82);
+    }
+
+    .newsletter-form {
+      padding: 20px;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 22px;
+      backdrop-filter: blur(12px);
+    }
+
+    .newsletter-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .newsletter-row input {
+      min-width: 0;
+      flex: 1;
+      height: 58px;
+      padding: 0 18px;
+      color: var(--ink);
+      background: var(--white);
+      border: 1px solid transparent;
+      border-radius: 13px;
+      outline: none;
+    }
+
+    .newsletter-row input:focus {
+      border-color: var(--blue-bright);
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, .18);
+    }
+
+    .newsletter-submit {
+      min-height: 58px;
+      padding-inline: 20px;
+      color: var(--ink);
+      background: var(--white);
+      border: 0;
+      border-radius: 13px;
+      cursor: pointer;
+      font-weight: 850;
+      transition: transform .2s ease, background .2s ease;
+      white-space: nowrap;
+    }
+
+    .newsletter-submit:hover {
+      background: var(--ice);
+      transform: translateY(-1px);
+    }
+
+    .newsletter-consent {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+      margin-top: 15px;
+      color: rgba(255, 255, 255, .78);
+      cursor: pointer;
+      font-size: .77rem;
+      line-height: 1.5;
+    }
+
+    .newsletter-consent input {
+      width: 17px;
+      height: 17px;
+      margin: 2px 0 0;
+      accent-color: var(--ink);
+    }
+
+    .newsletter-note {
+      min-height: 23px;
+      margin: 12px 2px 0;
+      color: rgba(255, 255, 255, .76);
+      font-size: .78rem;
+    }
+
+    .newsletter-note[data-state="ready"] {
+      color: var(--white);
+      font-weight: 700;
+    }
+
     .contact-wrap { padding-bottom: 110px; }
 
     .contact-panel {
@@ -757,6 +889,43 @@
       color: var(--blue);
       font-weight: 800;
       text-underline-offset: 4px;
+    }
+
+    .telegram-link {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-top: 18px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 800;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .telegram-link:hover {
+      color: #168acd;
+      transform: translateY(-1px);
+    }
+
+    .telegram-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      color: var(--white);
+      background: #229ed9;
+      border-radius: 50%;
+      box-shadow: 0 10px 24px rgba(34, 158, 217, .22);
+    }
+
+    .telegram-icon svg {
+      width: 23px;
+      height: 23px;
+      display: block;
+      fill: currentColor;
     }
 
     .contact-form {
@@ -861,6 +1030,7 @@
       .catalogue-group-head p { grid-column: 1 / -1; }
       .vials-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .document-panel { grid-template-columns: 1fr; }
+      .newsletter-panel { grid-template-columns: 1fr; }
       .contact-panel { grid-template-columns: 1fr; }
     }
 
@@ -901,6 +1071,10 @@
       .document-panel { padding: 34px 22px; border-radius: 25px; }
       .batch-row { display: grid; }
       .batch-row button { width: 100%; }
+      .newsletter-wrap { padding-bottom: 80px; }
+      .newsletter-panel { padding: 34px 22px; border-radius: 25px; }
+      .newsletter-row { display: grid; }
+      .newsletter-submit { width: 100%; white-space: normal; }
       .contact-wrap { padding-bottom: 80px; }
       .contact-panel { padding: 34px 22px; border-radius: 25px; }
       .contact-form { grid-template-columns: 1fr; }
@@ -1066,6 +1240,29 @@
       </div>
     </section>
 
+    <section class="shell newsletter-wrap" id="nyhedsbrev" aria-labelledby="newsletter-title">
+      <div class="newsletter-panel">
+        <div class="newsletter-copy">
+          <p class="eyebrow" data-i18n="newsletterEyebrow">Nyhedsbrev</p>
+          <h2 id="newsletter-title" data-i18n="newsletterTitle">Få 15 % på din første ordre.</h2>
+          <p data-i18n="newsletterCopy">Tilmeld dig Stark Peptides’ nyhedsbrev og få nyheder, produktinformation og særlige tilbud direkte i din indbakke.</p>
+        </div>
+
+        <form class="newsletter-form" id="newsletter-form" action="mailto:Starkpep@proton.me" method="post" enctype="text/plain">
+          <label class="visually-hidden" for="newsletter-email" data-i18n="newsletterEmailLabel">E-mail</label>
+          <div class="newsletter-row">
+            <input id="newsletter-email" name="email" type="email" autocomplete="email" required placeholder="Din e-mailadresse" data-i18n-placeholder="newsletterEmailPlaceholder" aria-describedby="newsletter-consent-text newsletter-note">
+            <button class="newsletter-submit" type="submit" data-i18n="newsletterButton">Tilmeld dig og få 15 %</button>
+          </div>
+          <label class="newsletter-consent" for="newsletter-consent">
+            <input id="newsletter-consent" name="consent" type="checkbox" required>
+            <span id="newsletter-consent-text" data-i18n="newsletterConsent">Ja tak, jeg giver samtykke til at modtage nyheder og markedsføring fra Stark Peptides via e-mail. Jeg kan til enhver tid afmelde mig ved at skrive til Starkpep@proton.me.</span>
+          </label>
+          <p class="newsletter-note" id="newsletter-note" aria-live="polite" data-i18n="newsletterNote">Tilmeldingen åbnes i dit mailprogram. Send mailen for at registrere dit samtykke og modtage rabatkoden.</p>
+        </form>
+      </div>
+    </section>
+
     <section class="shell contact-wrap" id="kontakt" aria-labelledby="contact-title">
       <div class="contact-panel">
         <div class="contact-copy">
@@ -1073,6 +1270,14 @@
           <h2 id="contact-title" data-i18n="contactTitle">Lad os tale sammen.</h2>
           <p data-i18n="contactCopy">Har du spørgsmål til produkter eller dokumentation? Skriv til os, så vender vi tilbage hurtigst muligt.</p>
           <a class="contact-email" href="mailto:Starkpep@proton.me">Starkpep@proton.me <span aria-hidden="true">↗</span></a>
+          <a class="telegram-link" href="https://t.me/+gnLkYMchL4c2MGM0" target="_blank" rel="noopener noreferrer" aria-label="Følg Stark Peptides på Telegram" data-i18n-aria="telegramAria">
+            <span class="telegram-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M20.7 3.4 2.9 10.3c-1.2.5-1.2 1.1-.2 1.4l4.6 1.4 1.8 5.4c.2.6.1.9.8.9.5 0 .8-.2 1-.4l2.2-2.1 4.6 3.4c.8.5 1.4.3 1.7-.8l3-14.2c.4-1.4-.5-2.1-1.7-1.9ZM8 12.8l10.5-6.6c.5-.3 1-.1.6.2l-8.7 7.9-.3 3.2L8 12.8Z"/>
+              </svg>
+            </span>
+            <span data-i18n="telegramLabel">Følg os på Telegram</span>
+          </a>
         </div>
 
         <form class="contact-form" id="contact-form" action="mailto:Starkpep@proton.me" method="post" enctype="text/plain">
@@ -1146,9 +1351,23 @@
         batchNote: 'Skriv batchnummeret præcis som på etiketten.',
         batchRequired: 'Indtast et batchnummer for at fortsætte.',
         batchUnavailable: (batch) => `Rapportopslag for ${batch} aktiveres, når rapportbiblioteket er tilsluttet.`,
+        newsletterEyebrow: 'Nyhedsbrev',
+        newsletterTitle: 'Få 15 % på din første ordre.',
+        newsletterCopy: 'Tilmeld dig Stark Peptides’ nyhedsbrev og få nyheder, produktinformation og særlige tilbud direkte i din indbakke.',
+        newsletterEmailLabel: 'E-mail',
+        newsletterEmailPlaceholder: 'Din e-mailadresse',
+        newsletterButton: 'Tilmeld dig og få 15 %',
+        newsletterConsent: 'Ja tak, jeg giver samtykke til at modtage nyheder og markedsføring fra Stark Peptides via e-mail. Jeg kan til enhver tid afmelde mig ved at skrive til Starkpep@proton.me.',
+        newsletterNote: 'Tilmeldingen åbnes i dit mailprogram. Send mailen for at registrere dit samtykke og modtage rabatkoden.',
+        newsletterOpening: 'Dit mailprogram åbnes nu. Send mailen for at registrere tilmeldingen og modtage rabatkoden.',
+        newsletterSubject: 'Tilmelding til nyhedsbrev — 15 % på første ordre',
+        newsletterMailIntro: 'Jeg ønsker at tilmelde mig Stark Peptides’ nyhedsbrev og modtage 15 % rabat på min første ordre.',
+        newsletterMailConsent: 'Jeg giver samtykke til at modtage nyheder og markedsføring fra Stark Peptides via e-mail og ved, at jeg til enhver tid kan afmelde mig.',
         contactEyebrow: 'Kontakt os',
         contactTitle: 'Lad os tale sammen.',
         contactCopy: 'Har du spørgsmål til produkter eller dokumentation? Skriv til os, så vender vi tilbage hurtigst muligt.',
+        telegramAria: 'Følg Stark Peptides på Telegram',
+        telegramLabel: 'Følg os på Telegram',
         nameLabel: 'Navn',
         namePlaceholder: 'Dit navn',
         emailLabel: 'E-mail',
@@ -1204,9 +1423,23 @@
         batchNote: 'Enter the batch number exactly as shown on the label.',
         batchRequired: 'Enter a batch number to continue.',
         batchUnavailable: (batch) => `Report lookup for ${batch} will be available once the report library is connected.`,
+        newsletterEyebrow: 'Newsletter',
+        newsletterTitle: 'Get 15% off your first order.',
+        newsletterCopy: 'Sign up for the Stark Peptides newsletter and receive news, product information and special offers directly in your inbox.',
+        newsletterEmailLabel: 'Email',
+        newsletterEmailPlaceholder: 'Your email address',
+        newsletterButton: 'Sign up and get 15%',
+        newsletterConsent: 'Yes, I consent to receiving news and marketing from Stark Peptides by email. I can unsubscribe at any time by emailing Starkpep@proton.me.',
+        newsletterNote: 'Your signup will open in your email app. Send the email to register your consent and receive the discount code.',
+        newsletterOpening: 'Your email app is opening. Send the email to register your signup and receive the discount code.',
+        newsletterSubject: 'Newsletter signup — 15% off your first order',
+        newsletterMailIntro: 'I would like to subscribe to the Stark Peptides newsletter and receive 15% off my first order.',
+        newsletterMailConsent: 'I consent to receiving news and marketing from Stark Peptides by email and understand that I can unsubscribe at any time.',
         contactEyebrow: 'Contact us',
         contactTitle: 'Let’s talk.',
         contactCopy: 'Questions about products or documentation? Send us a message and we’ll get back to you as soon as possible.',
+        telegramAria: 'Follow Stark Peptides on Telegram',
+        telegramLabel: 'Follow us on Telegram',
         nameLabel: 'Name',
         namePlaceholder: 'Your name',
         emailLabel: 'Email',
@@ -1231,6 +1464,9 @@
     const batchForm = document.querySelector('#batch-form');
     const batchInput = document.querySelector('#batch-number');
     const batchNote = document.querySelector('#batch-note');
+    const newsletterForm = document.querySelector('#newsletter-form');
+    const newsletterEmail = document.querySelector('#newsletter-email');
+    const newsletterNote = document.querySelector('#newsletter-note');
     const contactForm = document.querySelector('#contact-form');
     const contactNote = document.querySelector('#contact-note');
 
@@ -1261,6 +1497,7 @@
       });
 
       batchNote.dataset.state = '';
+      newsletterNote.dataset.state = '';
       contactNote.dataset.state = '';
       localStorage.setItem('stark-language', language);
     }
@@ -1283,6 +1520,19 @@
       }
       batchNote.textContent = t.batchUnavailable(batch.toUpperCase());
       batchNote.dataset.state = 'visible';
+    });
+
+    newsletterForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!newsletterForm.reportValidity()) return;
+
+      const t = translations[currentLanguage];
+      const email = newsletterEmail.value.trim();
+      const body = `${t.newsletterMailIntro}\n\n${t.mailEmail}: ${email}\n\n${t.newsletterMailConsent}`;
+
+      newsletterNote.textContent = t.newsletterOpening;
+      newsletterNote.dataset.state = 'ready';
+      window.location.href = `mailto:Starkpep@proton.me?subject=${encodeURIComponent(t.newsletterSubject)}&body=${encodeURIComponent(body)}`;
     });
 
     contactForm.addEventListener('submit', (event) => {
