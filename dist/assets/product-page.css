@@ -205,6 +205,82 @@ h1, h2, h3, p { margin-top: 0; }
   border-radius: 50%;
 }
 
+.product-stage--vial {
+  isolation: isolate;
+}
+
+.vial-stage-card {
+  position: relative;
+  z-index: 1;
+  width: min(82%, 340px);
+  min-height: 310px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 28px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, .84);
+  border: 1px solid rgba(220, 228, 239, .96);
+  border-radius: 28px;
+  box-shadow: 0 22px 48px rgba(30, 62, 105, .11);
+  text-align: center;
+}
+
+.vial-stage-logo {
+  width: 164px;
+  height: 72px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.vial-stage-logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 50% 43%;
+}
+
+.vial-stage-kicker,
+.vial-stage-format,
+.vial-stage-card small {
+  display: block;
+  text-transform: uppercase;
+}
+
+.vial-stage-kicker {
+  margin-bottom: 10px;
+  color: var(--blue);
+  font-size: .67rem;
+  font-weight: 850;
+  letter-spacing: .15em;
+}
+
+.vial-stage-card strong {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-size: clamp(1.65rem, 4vw, 2.6rem);
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+
+.vial-stage-format {
+  margin-top: 12px;
+  color: #0f5f52;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .18em;
+}
+
+.vial-stage-card small {
+  margin-top: 32px;
+  color: var(--muted);
+  font-size: .62rem;
+  font-weight: 760;
+  letter-spacing: .1em;
+}
+
 .product-image {
   position: relative;
   z-index: 1;
@@ -373,6 +449,8 @@ h1, h2, h3, p { margin-top: 0; }
   color: var(--muted);
 }
 
+.info-card--wide { grid-column: 1 / -1; }
+
 .disclaimer {
   position: relative;
   overflow: hidden;
@@ -473,6 +551,7 @@ footer {
   .product-main { padding-block: 30px 76px; }
   .product-stage { min-height: 300px; padding: 22px; border-radius: 26px; }
   .product-image { width: 122%; max-width: none; }
+  .vial-stage-card { min-height: 270px; }
   .product-copy h1 { font-size: clamp(3rem, 18vw, 4.6rem); }
   .content-grid { grid-template-columns: 1fr; }
   .footer-row { align-items: flex-start; flex-direction: column; }
