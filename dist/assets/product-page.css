@@ -569,5 +569,5 @@ footer {
 
 
 .product-image--pen { width: 100%; max-width: 690px; filter: none; border-radius: 16px; }
-.product-stage:has(.product-image--pen) { padding: 0; background: #f1eee8; }
+.product-stage:has(.product-image--pen) { padding: 0; background: #ffffff; }
 .product-stage:has(.product-image--pen)::before { display: none; }
