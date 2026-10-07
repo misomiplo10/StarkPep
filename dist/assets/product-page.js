@@ -45,3 +45,10 @@
 
   applyLanguage(currentLanguage);
 })();
+
+
+(function () {
+  const ageGate = document.createElement('script');
+  ageGate.src = '/assets/age-gate.js';
+  document.body.appendChild(ageGate);
+})();
