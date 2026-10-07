@@ -15,16 +15,16 @@
         }
     },
     "nad-plus-500mg-vial": {
-        "name": "NAD+ 500 mg",
+        "name": "NAD+",
         "index": "16",
         "da": {
-            "lead": "NAD+ 500 mg i vial-format til laboratorieforskning.",
-            "aboutCopy": "NAD+ 500 mg fra Stark Peptides. Se etiketten og den tilhørende batchdokumentation for produktspecifikation og indhold.",
+            "lead": "NAD+ i vial-format til laboratorieforskning.",
+            "aboutCopy": "NAD+ fra Stark Peptides. Se etiketten og den tilhørende batchdokumentation for produktspecifikation og indhold.",
             "researchCopy": "Kontrollér produktets identitet, sammensætning og batchdokumentation før laboratoriearbejde."
         },
         "en": {
-            "lead": "NAD+ 500 mg in vial format for laboratory research.",
-            "aboutCopy": "NAD+ 500 mg from Stark Peptides. Refer to the label and corresponding batch documentation for product specifications and contents.",
+            "lead": "NAD+ in vial format for laboratory research.",
+            "aboutCopy": "NAD+ from Stark Peptides. Refer to the label and corresponding batch documentation for product specifications and contents.",
             "researchCopy": "Verify the product identity, composition and batch documentation before laboratory work."
         }
     },
