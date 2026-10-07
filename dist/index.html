@@ -493,6 +493,11 @@
         var(--ice);
     }
 
+    .product-visual--pen { aspect-ratio: 1; background: #f1eee8; }
+    .pen-render { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform .65s cubic-bezier(.2,.7,.2,1); }
+    .product-card:hover .pen-render, .product-card:focus-visible .pen-render { transform: scale(1.035) translateY(-3px); }
+    @media (prefers-reduced-motion: reduce) { .pen-render { transition: none; } .product-card:hover .pen-render, .product-card:focus-visible .pen-render { transform: none; } }
+
     .product-copy { padding: 0 8px 12px; }
 
     .product-index {
@@ -1155,28 +1160,50 @@
               <h3 id="pens-title">PENS</h3>
             </div>
             <p data-i18n="pensIntro">Pen-formater med egne produktsider og adgang til batchdokumentation.</p>
-            <span class="catalogue-count" data-i18n="pensCount">2 produkter</span>
+            <span class="catalogue-count" data-i18n="pensCount">4 produkter</span>
           </div>
 
           <div class="products-grid">
-            <a class="product-card" href="/products/retatrutide-30mg/">
-              <div class="product-visual product-visual--retatrutide" role="img" aria-label="Stark Peptides Retatrutide 30 mg"></div>
+            <a class="product-card" href="/products/wolverine-pen/">
+              <div class="product-visual product-visual--pen"><img class="pen-render" src="assets/wolverine-pen-studio.webp" width="1000" height="1000" alt="Stark Peptides Wolverine pen med æske" loading="lazy" decoding="async"></div>
               <div class="product-copy">
-                <span class="product-index" data-i18n="productOne">Produkt 01</span>
-                <h4>Retatrutide</h4>
+                <span class="product-index" data-i18n="penProduct1">Produkt 01</span>
+                <h4>Wolverine</h4>
                 <span class="product-use-label" data-i18n="researchUseShort">Kun til forskning</span>
-                <p data-i18n="retatrutideInfo">30 mg format. Find den tilhørende dokumentation via batchnummeret.</p>
+                <p data-i18n="penInfo">Pen-format. Find den tilhørende dokumentation via batchnummeret.</p>
                 <span class="product-link-hint"><span data-i18n="readMore">Se produkt</span> <span aria-hidden="true">↗</span></span>
               </div>
             </a>
 
-            <a class="product-card" href="/products/nad-plus-500mg/">
-              <div class="product-visual product-visual--nad" role="img" aria-label="Stark Peptides NAD+ 500 mg"></div>
+            <a class="product-card" href="/products/klow-pen/">
+              <div class="product-visual product-visual--pen"><img class="pen-render" src="assets/klow-pen-studio.webp" width="1000" height="1000" alt="Stark Peptides KLOW pen med æske" loading="lazy" decoding="async"></div>
               <div class="product-copy">
-                <span class="product-index" data-i18n="productTwo">Produkt 02</span>
-                <h4>NAD+</h4>
+                <span class="product-index" data-i18n="penProduct2">Produkt 02</span>
+                <h4>KLOW</h4>
                 <span class="product-use-label" data-i18n="researchUseShort">Kun til forskning</span>
-                <p data-i18n="nadInfo">500 mg format. Find den tilhørende dokumentation via batchnummeret.</p>
+                <p data-i18n="penInfo">Pen-format. Find den tilhørende dokumentation via batchnummeret.</p>
+                <span class="product-link-hint"><span data-i18n="readMore">Se produkt</span> <span aria-hidden="true">↗</span></span>
+              </div>
+            </a>
+
+            <a class="product-card" href="/products/ghk-cu-pen/">
+              <div class="product-visual product-visual--pen"><img class="pen-render" src="assets/ghk-cu-pen-studio.webp" width="1000" height="1000" alt="Stark Peptides GHK-Cu pen med æske" loading="lazy" decoding="async"></div>
+              <div class="product-copy">
+                <span class="product-index" data-i18n="penProduct3">Produkt 03</span>
+                <h4>GHK-Cu</h4>
+                <span class="product-use-label" data-i18n="researchUseShort">Kun til forskning</span>
+                <p data-i18n="penInfo">Pen-format. Find den tilhørende dokumentation via batchnummeret.</p>
+                <span class="product-link-hint"><span data-i18n="readMore">Se produkt</span> <span aria-hidden="true">↗</span></span>
+              </div>
+            </a>
+
+            <a class="product-card" href="/products/retatrutide-30mg/">
+              <div class="product-visual product-visual--pen"><img class="pen-render" src="assets/retatrutide-pen-studio.webp" width="1000" height="1000" alt="Stark Peptides Retatrutide pen med æske" loading="lazy" decoding="async"></div>
+              <div class="product-copy">
+                <span class="product-index" data-i18n="penProduct4">Produkt 04</span>
+                <h4>Retatrutide</h4>
+                <span class="product-use-label" data-i18n="researchUseShort">Kun til forskning</span>
+                <p data-i18n="penInfo">Pen-format. Find den tilhørende dokumentation via batchnummeret.</p>
                 <span class="product-link-hint"><span data-i18n="readMore">Se produkt</span> <span aria-hidden="true">↗</span></span>
               </div>
             </a>
@@ -1330,7 +1357,12 @@
         productsIntro: 'Udforsk udvalget efter format. Alle produkter er udelukkende til laboratorieforskning.',
         formatLabel: 'Format',
         pensIntro: 'Pen-formater med egne produktsider og adgang til batchdokumentation.',
-        pensCount: '2 produkter',
+        pensCount: '4 produkter',
+        penInfo: 'Pen-format. Find den tilhørende dokumentation via batchnummeret.',
+        penProduct1: 'Produkt 01',
+        penProduct2: 'Produkt 02',
+        penProduct3: 'Produkt 03',
+        penProduct4: 'Produkt 04',
         vialsIntro: 'Klik på et vial-produkt for at læse produktbeskrivelsen og forskningskonteksten.',
         vialsCount: '14 produkter · Kun til forskning',
         productOne: 'Produkt 01',
@@ -1402,7 +1434,12 @@
         productsIntro: 'Explore the selection by format. All products are exclusively for laboratory research.',
         formatLabel: 'Format',
         pensIntro: 'Pen formats with individual product pages and access to batch documentation.',
-        pensCount: '2 products',
+        pensCount: '4 products',
+        penInfo: 'Pen format. Find the corresponding documentation using the batch number.',
+        penProduct1: 'Product 01',
+        penProduct2: 'Product 02',
+        penProduct3: 'Product 03',
+        penProduct4: 'Product 04',
         vialsIntro: 'Select a vial product to read its product description and research context.',
         vialsCount: '14 products · Research use only',
         productOne: 'Product 01',
@@ -1555,3 +1592,4 @@
   </script>
 </body>
 </html>
+
