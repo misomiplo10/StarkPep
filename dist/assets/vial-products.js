@@ -1,5 +1,33 @@
 (function () {
   const products = {
+    "lemon-glow": {
+        "name": "Lemon Glow",
+        "index": "15",
+        "da": {
+            "lead": "Lemon Glow i vial-format til laboratorieforskning.",
+            "aboutCopy": "Lemon Glow fra Stark Peptides. Se etiketten og den tilhørende batchdokumentation for produktspecifikation og indhold.",
+            "researchCopy": "Kontrollér produktets identitet, sammensætning og batchdokumentation før laboratoriearbejde."
+        },
+        "en": {
+            "lead": "Lemon Glow in vial format for laboratory research.",
+            "aboutCopy": "Lemon Glow from Stark Peptides. Refer to the label and corresponding batch documentation for product specifications and contents.",
+            "researchCopy": "Verify the product identity, composition and batch documentation before laboratory work."
+        }
+    },
+    "nad-plus-500mg-vial": {
+        "name": "NAD+ 500 mg",
+        "index": "16",
+        "da": {
+            "lead": "NAD+ 500 mg i vial-format til laboratorieforskning.",
+            "aboutCopy": "NAD+ 500 mg fra Stark Peptides. Se etiketten og den tilhørende batchdokumentation for produktspecifikation og indhold.",
+            "researchCopy": "Kontrollér produktets identitet, sammensætning og batchdokumentation før laboratoriearbejde."
+        },
+        "en": {
+            "lead": "NAD+ 500 mg in vial format for laboratory research.",
+            "aboutCopy": "NAD+ 500 mg from Stark Peptides. Refer to the label and corresponding batch documentation for product specifications and contents.",
+            "researchCopy": "Verify the product identity, composition and batch documentation before laboratory work."
+        }
+    },
     "ghk-cu": {
       name: "GHK-Cu",
       index: "01",
@@ -397,3 +425,4 @@
   pageBehaviour.src = "/assets/product-page.js";
   document.body.appendChild(pageBehaviour);
 })();
+
