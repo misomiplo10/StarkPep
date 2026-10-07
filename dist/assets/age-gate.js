@@ -5,7 +5,7 @@
     #stark-age-gate { box-sizing: border-box; width: min(540px, calc(100% - 32px)); max-height: calc(100dvh - 32px); overflow: auto; margin: auto; padding: clamp(26px, 6vw, 46px); color: #0b1830; background: #fff; border: 1px solid #dce4ef; border-top: 4px solid #397fe8; border-radius: 24px; box-shadow: 0 24px 90px #0005; font-family: inherit; text-align: center; }
     #stark-age-gate::backdrop { background: rgba(7, 17, 34, .88); backdrop-filter: blur(6px); }
     #stark-age-gate .age-logo { display: block; width: 200px; max-width: 80%; margin: 0 auto 24px; }
-    #stark-age-gate .age-languages { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; }
+    #stark-age-gate .age-languages { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 24px; }
     #stark-age-gate .age-languages button { padding: 7px 12px; background: #f7f9fc; color: #5b6c85; border: 1px solid #dce4ef; border-radius: 20px; font: inherit; font-size: 12px; cursor: pointer; }
     #stark-age-gate .age-languages button[aria-pressed=true] { background: #397fe8; border-color: #397fe8; color: #fff; }
     #stark-age-gate .age-icon { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 20px; color: #397fe8; background: #eaf3ff; border-radius: 50%; font-weight: 800; font-size: 20px; }
@@ -25,7 +25,7 @@
   dialog.setAttribute('aria-describedby', 'age-copy age-requirement');
   dialog.innerHTML = `
     <img class="age-logo" src="/assets/stark-peptides-logo-transparent.png" alt="Stark Peptides">
-    <div class="age-languages" aria-label="Language"><button type="button" data-age-lang="da">DA</button><button type="button" data-age-lang="en">EN</button></div>
+    <div class="age-languages" aria-label="Language"><button type="button" data-age-lang="da">DA</button><button type="button" data-age-lang="en">EN</button><button type="button" data-age-lang="sv" aria-label="Svenska">SV</button><button type="button" data-age-lang="no" aria-label="Norsk">NO</button><button type="button" data-age-lang="de" aria-label="Deutsch">DE</button></div>
     <div class="age-icon" aria-hidden="true">18+</div>
     <h2 id="age-title"></h2>
     <p id="age-copy"></p>
@@ -37,7 +37,8 @@
     da: { title: 'Bekræft din alder', copy: 'Denne hjemmeside indeholder information om forskningsprodukter og er kun for voksne.', requirement: 'Du skal være 18 år eller ældre for at fortsætte.', accept: 'Jeg er 18 år eller ældre', reject: 'Jeg er under 18', note: 'Ved at fortsætte bekræfter du, at du er mindst 18 år. Produkterne er kun til laboratorieforskning. Indholdet er ikke medicinsk rådgivning.', deniedTitle: 'Adgang kræver, at du er 18+', deniedCopy: 'Du kan ikke fortsætte på hjemmesiden, hvis du er under 18 år.', back: 'Tilbage til aldersbekræftelse' },
     en: { title: 'Confirm your age', copy: 'This website contains information about research products and is intended for adults only.', requirement: 'You must be 18 or older to continue.', accept: 'I am 18 or older', reject: 'I am under 18', note: 'By continuing, you confirm that you are at least 18 years old. Products are for laboratory research only. This content is not medical advice.', deniedTitle: 'You must be 18+ to enter', deniedCopy: 'You cannot continue to this website if you are under 18.', back: 'Back to age confirmation' }
   };
-  let language = document.documentElement.lang === 'en' ? 'en' : 'da';
+  for (const [code, locale] of Object.entries(window.STARK_LOCALES || {})) copy[code] = locale.age;
+  let language = copy[document.documentElement.lang] ? document.documentElement.lang : 'da';
   let denied = false;
   const accept = dialog.querySelector('#age-accept');
   const reject = dialog.querySelector('#age-reject');
@@ -45,6 +46,7 @@
   function render() {
     const t = copy[language];
     dialog.lang = language;
+    dialog.querySelector('.age-languages').setAttribute('aria-label', window.STARK_LOCALES?.[language]?.home.languageAria || (language === 'da' ? 'Vælg sprog' : 'Choose language'));
     dialog.querySelector('#age-title').textContent = denied ? t.deniedTitle : t.title;
     dialog.querySelector('#age-copy').textContent = denied ? t.deniedCopy : t.copy;
     dialog.querySelector('#age-requirement').textContent = t.requirement;
@@ -73,7 +75,8 @@
     render();
     (denied ? reject : accept).focus();
   });
-  dialog.querySelectorAll('[data-age-lang]').forEach(b => b.addEventListener('click', () => { language = b.dataset.ageLang; render(); }));
+  dialog.querySelectorAll('[data-age-lang]').forEach(b => b.addEventListener('click', () => { language = b.dataset.ageLang; window.STARK_SET_LANGUAGE?.(language); render(); }));
+  window.addEventListener('stark-language-change', e => { if (copy[e.detail]) { language = e.detail; render(); } });
   window.addEventListener('pageshow', e => { if (e.persisted) open(); });
   open();
 })();

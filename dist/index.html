@@ -1078,6 +1078,13 @@
     .hero-stage--boxes { min-height: 0; padding: 0; aspect-ratio: 1; background: #ffffff; }
     .hero-stage--boxes::before, .hero-stage--boxes::after { display: none; }
     .hero-boxes-image { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+.language-switch { flex-wrap: wrap; }
+@media (max-width: 680px) {
+  .nav { flex-wrap: wrap; padding-block: 8px; gap: 4px; }
+  .header-actions { width: 100%; justify-content: flex-end; }
+  .language-switch { max-width: 100%; }
+}
   </style>
 </head>
 <body>
@@ -1095,6 +1102,9 @@
         <div class="language-switch" aria-label="Vælg sprog" data-i18n-aria="languageAria">
           <button type="button" data-lang="da" aria-pressed="true">DA</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="sv" aria-label="Svenska" aria-pressed="false">SV</button>
+          <button type="button" data-lang="no" aria-label="Norsk" aria-pressed="false">NO</button>
+          <button type="button" data-lang="de" aria-label="Deutsch" aria-pressed="false">DE</button>
         </div>
       </div>
     </div>
@@ -1113,7 +1123,7 @@
       </div>
 
       <div class="hero-stage hero-stage--boxes">
-        <img class="hero-boxes-image" src="assets/stark-boxes-hero-transparent.webp" width="1200" height="1200" alt="Stark Peptides æsker med Wolverine, KLOW, GHK-Cu og Retatrutide" fetchpriority="high" decoding="async">
+        <img class="hero-boxes-image" data-i18n-alt="heroImageAlt" src="assets/stark-boxes-hero-transparent.webp" width="1200" height="1200" alt="Stark Peptides æsker med Wolverine, KLOW, GHK-Cu og Retatrutide" fetchpriority="high" decoding="async">
       </div>
     </section>
 
@@ -1131,7 +1141,7 @@
           <div class="catalogue-group-head">
             <div>
               <span class="catalogue-kicker" data-i18n="formatLabel">Format</span>
-              <h3 id="pens-title">PENS</h3>
+              <h3 id="pens-title" data-i18n="pensTitle">PENS</h3>
             </div>
             <p data-i18n="pensIntro">Pen-formater med egne produktsider og adgang til batchdokumentation.</p>
             <span class="catalogue-count" data-i18n="pensCount">4 produkter</span>
@@ -1188,7 +1198,7 @@
           <div class="catalogue-group-head">
             <div>
               <span class="catalogue-kicker" data-i18n="formatLabel">Format</span>
-              <h3 id="vials-title">VIALS</h3>
+              <h3 id="vials-title" data-i18n="vialsTitle">VIALS</h3>
             </div>
             <p data-i18n="vialsIntro">Klik på et vial-produkt for at læse produktbeskrivelsen og forskningskonteksten.</p>
             <span class="catalogue-count" data-i18n="vialsCount">16 produkter · Kun til forskning</span>
@@ -1312,6 +1322,7 @@
     </div>
   </footer>
 
+  <script src="/assets/locales.js"></script>
   <script>
     const translations = {
       da: {
@@ -1470,6 +1481,9 @@
       }
     };
 
+    Object.assign(translations, Object.fromEntries(Object.entries(window.STARK_LOCALES).map(([language, locale]) => [language, locale.home])));
+    translations.da.pensTitle = 'PENS'; translations.da.vialsTitle = 'VIALS'; translations.da.heroImageAlt = 'Stark Peptides æsker med Wolverine, KLOW, GHK-Cu og Retatrutide';
+    translations.en.pensTitle = 'PENS'; translations.en.vialsTitle = 'VIALS'; translations.en.heroImageAlt = 'Stark Peptides boxes with Wolverine, KLOW, GHK-Cu and Retatrutide';
     let currentLanguage = localStorage.getItem('stark-language');
     if (!translations[currentLanguage]) currentLanguage = 'da';
 
@@ -1512,7 +1526,10 @@
       batchNote.dataset.state = '';
       newsletterNote.dataset.state = '';
       contactNote.dataset.state = '';
+      document.querySelectorAll('[data-i18n-alt]').forEach(element => { const value = t[element.dataset.i18nAlt]; if (value) element.setAttribute('alt', value); });
+      document.querySelectorAll('.pen-render').forEach(element => { const name = element.closest('.product-card').querySelector('h4').textContent; element.alt = window.STARK_LOCALES[language]?.words.alt(name) || 'Stark Peptides ' + name; });
       localStorage.setItem('stark-language', language);
+      window.dispatchEvent(new CustomEvent('stark-language-change', { detail: language }));
     }
 
     document.querySelectorAll('[data-lang]').forEach((button) => {
@@ -1564,9 +1581,12 @@
       window.location.href = `mailto:Starkpep@proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
 
+    window.STARK_SET_LANGUAGE = applyLanguage;
     applyLanguage(currentLanguage);
   </script>
   <script src="/assets/age-gate.js"></script>
+
+<style>.nav-links{gap:18px}.nav{flex-wrap:wrap;padding-block:10px}.header-actions{flex-wrap:wrap;justify-content:flex-end}@media(max-width:1050px){.nav-links{font-size:.85rem;gap:12px}}@media(max-width:780px){.nav-links a.extra-nav{display:inline}.header-actions{justify-content:center}.nav-links{flex-wrap:wrap;justify-content:center;gap:14px}.nav{justify-content:center}.language-switch{margin:0}}</style><script src="/assets/site-navigation.js"></script>
 </body>
 </html>
 
