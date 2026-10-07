@@ -1,5 +1,8 @@
 (function () {
-  if (document.getElementById('stark-age-gate')) return;
+  const sessionKey = 'stark-age-confirmed';
+  let confirmed = false;
+  try { confirmed = sessionStorage.getItem(sessionKey) === '18+'; } catch {}
+  if (confirmed || document.getElementById('stark-age-gate')) return;
   const style = document.createElement('style');
   style.textContent = `
     #stark-age-gate { box-sizing: border-box; width: min(540px, calc(100% - 32px)); max-height: calc(100dvh - 32px); overflow: auto; margin: auto; padding: clamp(26px, 6vw, 46px); color: #0b1830; background: #fff; border: 1px solid #dce4ef; border-top: 4px solid #397fe8; border-radius: 24px; box-shadow: 0 24px 90px #0005; font-family: inherit; text-align: center; }
@@ -57,6 +60,7 @@
     dialog.querySelectorAll('[data-age-lang]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.ageLang === language)));
   }
   function open() {
+    if (confirmed) return;
     denied = false;
     render();
     document.documentElement.style.overflow = 'hidden';
@@ -65,6 +69,8 @@
   }
   dialog.addEventListener('cancel', e => e.preventDefault());
   accept.addEventListener('click', () => {
+    confirmed = true;
+    try { sessionStorage.setItem(sessionKey, '18+'); } catch {}
     dialog.close();
     document.documentElement.style.overflow = previousOverflow;
     const target = document.querySelector('main h1');
